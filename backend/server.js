@@ -19,6 +19,17 @@ app.use('/api/sessions', require('./routes/sessions'));
 app.use('/api/attendance', require('./routes/attendance'));
 app.use('/api/student', require('./routes/student'));
 
+// Serve React frontend in production
+const path = require('path');
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api')) {
+      res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+    }
+  });
+}
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
