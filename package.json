@@ -1,11 +1,12 @@
 {
   "name": "samsung-lab-attendance",
   "version": "1.0.0",
+  "license": "MIT",
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "start": "node backend/server.js",
-    "render-build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend"
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "node backend/server.js"
   }
 }
